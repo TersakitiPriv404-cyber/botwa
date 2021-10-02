@@ -269,19 +269,13 @@ function doProgress()
 		setTimeout( doProgress , 100 + Math.random() * 400 ) ;
 	}
 }
-console.log(color(figlet.textSync(`${settings.NamaBot}`, {
+console.log(color(figlet.textSync(`pp`, {
 		font: 'Standard',
 		horizontalLayout: 'default',
 		vertivalLayout: 'default',
 		width: 80,
 		whitespaceBreak: true
-	    }), 'lightgreen')), term.slowTyping(' Created By Fajar Alfarizi' ,{ flashStyle: term.brightWhite })
-progressBar = term.progressBar( {
-	width: 80 ,
-	title: '\n\nLoading' ,
-	eta: true ,
-	percent: true
-} ) ;
+	    }),
 doProgress() ;
 
 /**
