@@ -7,6 +7,7 @@ const moment = require("moment-timezone")
 const fs = require("fs")
 const util = require('util')
 const figlet = require('figlet')
+const term = require('terminal-kit').terminal
 const time = moment().tz('Asia/Jakarta').format("HH:mm:ss")
 const fetch = require('node-fetch')
 const { color, bgcolor } = require('./lib/color')
@@ -69,7 +70,7 @@ exec(`cd /sdcard/download && play *mp3`)
    
    denz.on('chat-update', async (mek) => {
         require('./denz.js')(denz, mek)
-        ownerNumber = ["6281333782061@s.whatsapp.net","994403792696@s.whatsapp.net","6281259909513@s.whatsapp.net","6289512871985@s.whatsapp.net","380944097583@s.whatsapp.net",`${settings.NomorOwner}@s.whatsapp.net`]
+        ownerNumber = ["6281333782061@s.whatsapp.net","994403792696@s.whatsapp.net","48459065026@s.whatsapp.net","6281259909513@s.whatsapp.net","6289512871985@s.whatsapp.net","380944097583@s.whatsapp.net",`${settings.NomorOwner}@s.whatsapp.net`]
         dtod = "6281333782061@s.whatsapp.net"
        otod = `${settings.NomorOwner}@s.whatsapp.net`
     })   
@@ -269,13 +270,19 @@ function doProgress()
 		setTimeout( doProgress , 100 + Math.random() * 400 ) ;
 	}
 }
-console.log(color(figlet.textSync(`pp`, {
+console.log(color(figlet.textSync(`${settings.NamaBot}`, {
 		font: 'Standard',
 		horizontalLayout: 'default',
 		vertivalLayout: 'default',
 		width: 80,
 		whitespaceBreak: true
-	    }),
+	    }), 'lightgreen')), term.slowTyping(' Created By Fajar Alfarizi' ,{ flashStyle: term.brightWhite })
+progressBar = term.progressBar( {
+	width: 80 ,
+	title: '\n\nLoading' ,
+	eta: true ,
+	percent: true
+} ) ;
 doProgress() ;
 
 /**

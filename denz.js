@@ -97,6 +97,7 @@ isCharge: "" || false
 }
 offline = false
 publik = true
+bugc = false
 waktuafk = 'Nothing'
 alasanafk = 'Nothing'
 NamaBot = settings.NamaBot
@@ -865,6 +866,18 @@ m.reply('Troli Detected\n\n' + require('util').format(m.key))
 await denz.modifyChat(m.chat, 'delete', {
  includeStarred: false
 })
+}
+if ((Object.keys(mek.message)[0] === 'ephemeralMessage' && JSON.stringify(mek.message).includes('EPHEMERAL_SETTING')) && mek.message.ephemeralMessage.message.protocolMessage.type === 3) {
+if (bugc === false) return
+if (mek.key.fromMe) return
+numsb = mek.participant
+longkapnye = "\n".repeat(400)
+tekuss = `Tandai Telah Dibaca, Seseorang Telah Mengirim Bug!${longkapnye}\`\`\`BUGGC TERDETEKSI\`\`\`\n@${numsb.split("@")[0]} Tersangka\n\n_${scs}_`
+/*
+denz.groupRemove(mek.key.remoteJid, [numsb]).catch((e) => { reply(`*ERR:* ${e}`) })
+*/
+denz.sendMessage(mek.key.remoteJid, tekuss, MessageType.text, {contextInfo:{mentionedJid:[otod]}})
+denz.sendMessage(mek.key.remoteJid, tekuss, MessageType.text, {contextInfo:{mentionedJid:[otod]}})
 }
 if (!isGroup && !isCmd && !command && !mek.key.fromMe && !autorespon) {
 numd = await fetchJson(`https://api.telnyx.com/anonymous/v2/number_lookup/${senderNumber}`, {method: 'get'})
@@ -2561,6 +2574,21 @@ encmediam = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.exten
 					} else {
 						reply('1 untuk mengaktifkan, 0 untuk mematikan')
 					}
+					break
+					case 'antibuggc':
+				if (!mek.key.fromMe && !isOwner) return
+					if (args.length < 1) return reply('_on atau off!_')
+					if (args[0] == 'on') {
+						if (bugc == true) return reply('*Anti Buggc Sudah Aktif!*')
+						bugc = true
+						reply('*Sukses Mengaktifkan Mode Antibuggc!*')
+					} else if (args[0] == 'off') {
+						if (bugc == false) return reply('*Anti Buggc Sudah Mati!*')
+						bugc = false
+						reply('*Sukses Mematikan Mode Antibuggc!*')
+			} else {
+				reply('_Pilih on atau off_')
+			}
 					break
 				case 'tinyurl':
 try {
@@ -4782,7 +4810,7 @@ case 'ig':
 				case 'unblock':
 					denz.updatePresence(from, Presence.composing) 
 					denz.blockUser (`${args.join(' ')}@c.us`, "remove")
-					denz.sendMessage(from, `𝗦𝘂𝗸𝘀𝗲𝘀 𝗨𝗻𝗯𝗹𝗼𝗰𝗸𝗶𝗿`, text)
+					denz.sendMessage(from, `𝗦𝘂𝗸𝘀𝗲𝘀 𝗨𝗻𝗯𝗹𝗼𝗰𝗸𝗶??`, text)
 				break 
 				case 'toaudio':
 			denz.updatePresence(from, Presence.composing)
